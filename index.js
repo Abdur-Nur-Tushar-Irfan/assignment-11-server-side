@@ -55,14 +55,31 @@ async function run(){
             const result=await reviewsCollection.insertOne(review)
             res.send(result)
         })
-        //for read data from database
-        // app.get('/reviews',async(req,res)=>{
-        //     const query={}
-        //     const cursor=reviewsCollection.find(query)
-        //     const reviews=await cursor.toArray()
-        //     res.send(reviews)
-        // })
+        //for delete specific data
 
+        app.delete('/reviews/:id',async(req,res)=>{
+            const id=req.params.id;
+            const query={_id:ObjectId(id)}
+            const result=await reviewsCollection.deleteOne(query)
+            res.send(result)
+        })
+
+        //for update
+        app.patch('/reviews/:id',async(req,res)=>{
+            const id=req.params.id;
+            const status=req.params.status;
+            const query={_id:ObjectId(id)}
+            const updateDoc={
+                $set:{
+                    status:status
+
+                }
+            }
+            const result=await reviewsCollection.updateOne(query,updateDoc)
+            res.send(result)
+
+        })
+       
         //for review by email
         app.get('/reviews',async(req,res)=>{
             console.log(req.query)
