@@ -14,10 +14,6 @@ app.get('/', (req, res) => {
     res.send('server is running')
 })
 
-
-
-
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.fpvwzmp.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -62,9 +58,6 @@ async function run() {
             const services = await cursor.toArray();
             res.send(services)
         })
-
-       
-
         // post add allServices
         app.post("/addService", async (req, res) => {
             const review = req.body;
@@ -129,7 +122,7 @@ async function run() {
         })
 
 
-        //for review by email
+        //for review by email of reviews
         app.get('/reviews', verifyJWT, async (req, res) => {
             console.log(req.headers)
 
