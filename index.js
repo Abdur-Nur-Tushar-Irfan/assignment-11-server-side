@@ -63,7 +63,7 @@ async function run() {
             res.send(services)
         })
 
-        //for add services
+       
 
         // post for add allServices
         app.post("/addService", async (req, res) => {
@@ -97,7 +97,7 @@ async function run() {
         })
 
         //for update
-        app.patch('/reviews/:id', async (req, res) => {
+        app.put('/reviews/:id', async (req, res) => {
             const id = req.params.id;
             const updateUser = req.body;
             const query = { _id: ObjectId(id) }
@@ -115,11 +115,11 @@ async function run() {
 
         })
         app.get('/reviews', async (req, res) => {
+           
             let query = {}
             if (req.query.serviceName) {
                 query = {
                     serviceName: req.query.serviceName
-
                 }
 
             }
