@@ -65,7 +65,7 @@ async function run() {
 
        
 
-        // post for add allServices
+        // post add allServices
         app.post("/addService", async (req, res) => {
             const review = req.body;
             const result = await serviceCollection.insertOne(review);
